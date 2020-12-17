@@ -1,14 +1,15 @@
 import React from 'react';
-import TodoListByDay from "../ToDoTimeline";
+import TodoList from "../ToDoList";
+import WeatherReport from "../WeatherReport";
 import {Col} from "reactstrap";
+import './styles.scss';
 
 const SideBar = () => {
     return (
-        <>
-            <Col md={4} sm={12} className="side-bar">
-                <TodoListByDay />
-            </Col>
-        </>
+        <Col className="side-bar" md={5} sm={12} >
+            <WeatherReport />
+            <TodoList />
+        </Col>
     );
 };
 

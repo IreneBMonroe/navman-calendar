@@ -1,0 +1,71 @@
+@import '../../styles/vars';
+.timeline-item {
+	position: relative;
+	margin: 2em 0;
+}
+.timeline-item> div {
+	min-height: 1px;
+}
+.timeline-item:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.timeline-item:first-child {
+	margin-top: 0;
+}
+.timeline-item:last-child {
+	margin-bottom: 0;
+}
+@media only screen and (min-width: 1170px) {
+	.timeline-item{
+		margin: 4em 0;
+	}
+	.timeline-item:first-child {
+		margin-top: 0;
+	}
+	.timeline-item:last-child {
+		margin-bottom: 0;
+	}
+}
+.timeline-item-dot{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	box-shadow: 0 0 0 1px white;
+	
+	> .connector{
+		content: "";
+		display: block;
+		width: 0;
+		height: 100%;
+		border:1px solid #fff;
+		position: absolute;
+		top:0;
+		left:-30px
+	}
+}
+.timeline-item-badge {
+	position: absolute;
+	top: 0;
+	left: 28%;
+	width: auto;
+	height: auto;
+	padding-right: 0.6em;
+	padding-left: 0.6em;
+	border-radius: 10rem;
+	
+	> .connector{
+		content: "";
+		display: block;
+		width: 0;
+		height: 100%;
+		border:1px solid #fff;
+		position: absolute;
+		top:0;
+		left:50%
+	}
+}

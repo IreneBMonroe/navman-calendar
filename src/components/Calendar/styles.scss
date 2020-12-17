@@ -1,7 +1,11 @@
 @import '../../styles/vars';
 /*@import '~react-calendar/dist/Calendar.css';*/
+.dashboard-calender{
+  width: 100%;
+  max-width: 100%;
+}
 .react-calendar {
-  width: 550px;
+  width: 100%;
   max-width: 100%;
   background: white;
   border: none;
@@ -24,9 +28,19 @@
   font-size: 1.2rem;
   padding: 1em 0.5em;
   button.react-calendar__tile{
-    border-radius: 50%;
+    height: auto;
   }
   .react-calendar__tile--active{
     background: $red;
+  }
+}
+
+.react-calendar__navigation{
+  background: $bg-light-grey;
+  padding: 50px 20px;
+  height: auto;
+  .react-calendar__navigation__label{
+    font-size: 48px;
+    text-align: left;
   }
 }

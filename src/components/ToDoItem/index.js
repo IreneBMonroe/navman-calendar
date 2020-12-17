@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {Badge, ListGroupItem} from 'reactstrap';
+import {Badge, ListGroupItem, Row, Col} from 'reactstrap';
+import './styles.scss';
 import moment from 'moment';
-/*import useTime from '../../hooks/useTime';*/
 
 const ToDoItem = ({item, index}) => {
-    let time = new Date(item.dueDate).getTime();
+    let time = moment(item.dueDate).format('h:mm a');
     const handleBadgeClassname = (index) =>{
         switch(index){
             case 0:
@@ -26,10 +26,12 @@ const ToDoItem = ({item, index}) => {
     let badgeColor = handleBadgeClassname(index);
 
     return (
-        <ListGroupItem className={`timeline-item`}>
-            <Badge color={badgeColor} pill>{time}</Badge>
-            <span className={'timeline-text'}>{item.description}</span>
-        </ListGroupItem>
+        <div className={`timeline-item`} as={`a`}>
+            <Row>
+                <Col xs={`2`} className={'text-center '}> <Badge color={badgeColor} pill className={"timeline-item-badge text-white"}>{time}</Badge></Col>
+                <Col className={'timeline-text text-white'}>{item.description}</Col>
+            </Row>
+        </div>
     );
 };
 

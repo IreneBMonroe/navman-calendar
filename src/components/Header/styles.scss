@@ -6,6 +6,8 @@
   color: $dark-grey;
   font-size: 36px;
   border-bottom: solid $dark-grey 1px;
+  min-height: 100% !important;
+  height: 100% !important;
 }
 .headroom-wrapper {
   position: absolute;

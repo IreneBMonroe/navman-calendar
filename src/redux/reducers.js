@@ -1,4 +1,4 @@
-import {ADD_TODO, UPDATE_TODO, DELETE_TODO, SET_FILTER} from './actions';
+import {ADD_TODO, UPDATE_TODO, DELETE_TODO, SET_FILTER, SELECT_DATE} from './actions';
 import {initialState} from './states';
 
 const reducers = (state= initialState, action) => {
@@ -22,6 +22,12 @@ const reducers = (state= initialState, action) => {
             };
             break;
         case SET_FILTER:
+            break;
+        case SELECT_DATE:
+            return {
+                ...state,
+                currentDate: action.payload,
+            };
             break;
         default:
             return state;

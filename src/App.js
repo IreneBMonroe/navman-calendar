@@ -11,9 +11,9 @@ function App() {
     <div className="App">
       <Header/>
       <Container>
-        <Row className="align-items-center">
+        <Row className="align-items-start">
           <SideBar />
-          <Col md={8} sm={12}>
+          <Col md={7} sm={12}>
             <Calendar />
             <ToDoSummary/>
           </Col>

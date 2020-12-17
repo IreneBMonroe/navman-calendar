@@ -32,5 +32,6 @@ export const initialState = {
 			dueDate: new Date(),
 			status: 'undone'
 		}
-	]
+	],
+	currentDate: new Date()
 };

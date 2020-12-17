@@ -4,14 +4,14 @@ $green: rgb(52, 181, 150);
 $red: rgb(230, 87, 73);
 $yellow: rgb(229, 172, 40);
 $blue: rgb(8, 150, 254);
-$grey: rgb(143, 142, 147);
-$dark-grey: rgb(143, 146, 149);
+$grey: #9F9FA1;
+$dark-grey: #8E8E8E;
 $white: rgb(255, 255, 255);
 
 // Background colour
 $bg-white: rgb(255, 255, 255);
-$bg-light-grey: rgb(249, 249, 249);
-$blue-gradient: linear-gradient(-180deg, rgb(86, 78, 178) 100% rgb(66, 101, 182) 0%);
+$bg-light-grey: rgb(245, 245, 243);
+$blue-gradient: linear-gradient(-180deg, rgba(85,77,176,1) 0%, rgba(65,100,181,1) 100%);
 $bg-image-overlay: linear-gradient(-180deg, #A1C446 0%, #0C9CBE 100%);
 
 $theme-colors: (

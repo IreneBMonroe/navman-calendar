@@ -9,12 +9,15 @@ import {
 	FormGroup,
 	Label,
 	Input,
-	FormFeedback
+	FormFeedback,
+	Col
 } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import {addTodo} from '../../redux/actions';
 import {useDispatch} from 'react-redux';
 import "react-datepicker/dist/react-datepicker.css";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
 
 const ToDoAdd = () => {
 	const [modal, setModal] = useState(false);
@@ -24,9 +27,8 @@ const ToDoAdd = () => {
 	let dispatch = useDispatch();
 	const handleDescriptionChange = e => setDescription(e.target.value);
 	const handleDateChange = date => {
-		console.log(date);
 		setDateTime(date);
-	}
+	};
 	let inputProps = {
 		selected: dateTime,
 		placeholder: 'Set the date',
@@ -34,7 +36,8 @@ const ToDoAdd = () => {
 		id: 'dueDate',
 		onChange: (date) => handleDateChange(date),
 		showTimeSelect: true,
-		dateFormat: 'Pp'
+		dateFormat: 'Pp',
+		className: 'form-control'
 	};
 	
 	const handleClick = () => {
@@ -50,22 +53,27 @@ const ToDoAdd = () => {
 	};
 	return (
 		<>
-			<Button color="success" className={`btn-circle text-md`} onClick={toggle}>+</Button>
+			<Button color="success" className={`btn-circle text-md`} onClick={toggle}><FontAwesomeIcon
+				icon={faPlus}/></Button>
 			<Modal isOpen={modal} toggle={toggle}>
 				<ModalHeader toggle={toggle}>Add To Do</ModalHeader>
-				<ModalBody className={'text-center'}>
+				<ModalBody>
 					<Form>
-						<FormGroup>
-							<Label for="description">Description</Label>
-							<Input type="text" name="description" id="description" placeholder="To do description"
-							       value={description} onChange={handleDescriptionChange}
-							       requied/>
-							<FormFeedback>Description is required.</FormFeedback>
+						<FormGroup row>
+							<Label for="description" sm={3}>Description</Label>
+							<Col sm={9}>
+								<Input type="text" name="description" id="description" placeholder="To do description"
+								       value={description} onChange={handleDescriptionChange}
+								       requied/>
+								<FormFeedback>Description is required.</FormFeedback>
+							</Col>
 						</FormGroup>
-						<FormGroup>
-							<Label for="dueDate">Due Date</Label>
-							<DatePicker {...inputProps} />
-							<FormFeedback>Please select due date.</FormFeedback>
+						<FormGroup row>
+							<Label for="dueDate" sm={3}>Due Date</Label>
+							<Col sm={9}>
+								<DatePicker {...inputProps} />
+								<FormFeedback>Please select due date.</FormFeedback>
+							</Col>
 						</FormGroup>
 					</Form>
 				</ModalBody>
