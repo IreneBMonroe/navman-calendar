@@ -66,8 +66,8 @@ const WeatherReport = () => {
 	return (
 		<div className="text-center py-lg-5">
 			<FontAwesomeIcon className="mb-4 text-white" icon={icon} size="6x"/>
-			<p className={`text-uppercase text-white`}><h2 className={`font-weight-normal mb-2`}>{temp}</h2>
-				<small className={`text-capitalize text-white`}>{condition}</small></p>
+			<div className={`text-uppercase text-white`}><h2 className={`font-weight-normal mb-2`}>{temp}</h2>
+				<small className={`text-capitalize text-white`}>{condition}</small></div>
 		</div>
 	);
 }

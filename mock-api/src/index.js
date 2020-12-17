@@ -30,7 +30,7 @@ module.exports = () => {
     let count = 0;
     while (count < 70) {
         let description = makeDescription();
-        let dueDate = randomDateTime(i);
+        let dueDate = randomDateTime(count);
         let status = dueDate > now ? "undone" : statusType[Math.floor(Math.random() * 3)];
         data.todos.push({ userId: 1, id: count, description: `${description}`, status: status, dueDate: dueDate })
         count++;
