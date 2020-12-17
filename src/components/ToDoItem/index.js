@@ -17,6 +17,7 @@ const ToDoItem = ({item, index}) => {
                 return 'primary';
                 break;
             case 3:
+                return 'secondary';
                 break;
             default:
                 return 'secondary';
@@ -28,8 +29,8 @@ const ToDoItem = ({item, index}) => {
     return (
         <div className={`timeline-item`} as={`a`}>
             <Row>
-                <Col xs={`2`} className={'text-center '}> <Badge color={badgeColor} pill className={"timeline-item-badge text-white"}>{time}</Badge></Col>
-                <Col className={'timeline-text text-white'}>{item.description}</Col>
+                <Col xs={`2`} className={'text-center'}> <Badge color={badgeColor} pill className={"timeline-item-badge text-white"}>{time}</Badge></Col>
+                <Col xs={`8`} className={'timeline-text text-white'}>{item.description}</Col>
             </Row>
         </div>
     );

@@ -5,13 +5,14 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCloud, faCloudRain, faSun, faWind, faSnowflake} from '@fortawesome/free-solid-svg-icons'
 import buildUrl from 'build-url';
 
+//To REMOVE Security Risk
 const OPEN_APP_ID = '6261bc3c85b1ce89cb63ebdf1f3a4493';
 
 const WeatherReport = () => {
 	let {coordinate} = useCoordinate();
 	const [icon, setIcon] = useState(faSun);
 	const [temp, setTemp] = useState();
-	const [conditon, setCondition] = useState();
+	const [condition, setCondition] = useState();
 	// Need to find weather service that allow to query by date.
 	const WEATHER_URL = buildUrl('https://cors-anywhere.herokuapp.com/', {
 		path: 'https://api.openweathermap.org/data/2.5/onecall',
@@ -31,7 +32,6 @@ const WeatherReport = () => {
 		if (!coordinate) return;
 		try {
 			Request(WEATHER_URL).then(response => {
-				console.log(response);
 				if (response.current && response.current.weather.length > 0) {
 					setTemp(`${Math.floor(response.current.temp / 10)}°C`);
 					setCondition(response.current.weather[0].main);
@@ -67,7 +67,7 @@ const WeatherReport = () => {
 		<div className="text-center py-lg-5">
 			<FontAwesomeIcon className="mb-4 text-white" icon={icon} size="6x"/>
 			<p className={`text-uppercase text-white`}><h2 className={`font-weight-normal mb-2`}>{temp}</h2>
-				<small className={`text-capitalize text-white`}>{conditon}</small></p>
+				<small className={`text-capitalize text-white`}>{condition}</small></p>
 		</div>
 	);
 }

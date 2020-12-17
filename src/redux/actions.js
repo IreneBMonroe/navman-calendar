@@ -5,6 +5,7 @@ export const SET_FILTER = "SET_FILTER";
 export const DELETE_TODO = "DELETE_TODO";
 export const CURRENT_DATE = "CURRENT_DATE";
 export const SELECT_DATE = "SELECT_DATA";
+export const GET_TODO = "SELECT_DATA";
 const _URL = "http://localhost:9000/";
 
 export const addTodo = (todo) =>{
@@ -75,7 +76,7 @@ export const getToDosData = date => async (dispatch, getState) => {
     try {
         const response = await Request(`${_URL}todos?_order=asc&dueDate_eq=${date}`).then(response => response.json());
         dispatch({
-            type: "Todos.LOAD_Todos_SUCCESS",
+            type: "Todos.LOAD_TODOS_SUCCESS",
             payload: {
                 response
             }

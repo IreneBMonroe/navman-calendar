@@ -33,5 +33,8 @@ export const initialState = {
 			status: 'undone'
 		}
 	],
-	currentDate: new Date()
+	currentDate: new Date(),
+	completed: 48,
+	postponed: 12,
+	undone: 6
 };
