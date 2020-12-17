@@ -1,19 +1,25 @@
-import {ADD_TODO, UPDATE_STATUS, SET_FILTER} from './actions';
-import {todos} from './states';
-/*import { combineReducers } from 'redux';
-import { reducer as api } from 'redux-json-api';*/
+import {ADD_TODO, UPDATE_TODO, DELETE_TODO, SET_FILTER} from './actions';
+import {initialState} from './states';
 
-export let reducers = (state= todos, action) => {
+const reducers = (state= initialState, action) => {
     switch (action.type) {
         case ADD_TODO:
-            let newTodos = [...state];
-            newTodos.push(action.payload);
-            return newTodos;
+            return {
+                ...state,
+                todos:[...state.todos, action.payload],
+            };
             break;
-        case UPDATE_STATUS:
-            let updateStatus = [...state];
-            updateStatus = updateStatus.filter(todo => todo.id !== action.payload);
-            return updateStatus;
+        case UPDATE_TODO:
+            return {
+                ...state,
+                todos:[...state.todos]
+            };
+            break;
+        case DELETE_TODO:
+            return {
+                ...state,
+                todos: state.todos.filter(todo => todo.id !== action.payload),
+            };
             break;
         case SET_FILTER:
             break;
@@ -22,8 +28,4 @@ export let reducers = (state= todos, action) => {
     }
 }
 
-/*
-export default combineReducers({
-    api,
-});
-*/
+export default reducers;

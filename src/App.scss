@@ -23,7 +23,10 @@
 @import '~bootstrap/scss/tooltip';
 @import '~bootstrap/scss/alert';
 @import '~bootstrap/scss/badge';
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/media";
 
 @import 'styles/layout';
 @import 'styles/custom';
 @import 'styles/mixins';
+@import 'styles/btn';

@@ -4,37 +4,21 @@ import ToDoItem from '../ToDoItem';
 import {useSelector} from "react-redux";
 
 function TodoListByDay() {
-    let todos = useSelector(state => state);
+    let todos = useSelector(state => state.todos);
+    console.log(todos);
+    
+    if (!todos || todos.length === 0){
+        return <p> No Todos</p>
+    }
+    
     return (
         <ListGroup className={'timeline'}>
             {
-                todos.list && todos.list.map((todo) => {
-                        return <ToDoItem key={todo.id} item={todo}/>
+                todos && todos.map((todo, i) => {
+                        return <ToDoItem key={todo.id} item={todo} index={i} />
                     }
                    )
             }
-            {/*<ToDoItem key={1} item={{
-                userId: 1,
-                id: 0,
-                description: "Deserunt reprehenderit culpa.",
-                status: "postponed",
-                dueDate: "2020-11-18T10:36:49.375Z"
-            }} />
-            <ToDoItem key={2} item={{
-                userId: 1,
-                id: 1,
-                description: "Deserunt reprehenderit.",
-                status: "postponed",
-                dueDate: "2020-11-18T10:36:49.375Z"
-            }} />
-            <ToDoItem key={3} item={{
-                userId: 1,
-                id: 2,
-                description: "Deserunt reprehenderit culpa culpa.",
-                status: "postponed",
-                dueDate: "2020-11-18T10:36:49.375Z"
-            }} />*/}
-
         </ListGroup>
     );
 }
