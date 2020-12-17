@@ -14,20 +14,16 @@
 .timeline-item:first-child {
 	margin-top: 0;
 }
-.timeline-item:last-child {
-	margin-bottom: 0;
-}
-@media only screen and (min-width: 1170px) {
+
+@include media-breakpoint-up(lg) {
 	.timeline-item{
 		margin: 4em 0;
 	}
 	.timeline-item:first-child {
 		margin-top: 0;
 	}
-	.timeline-item:last-child {
-		margin-bottom: 0;
-	}
 }
+
 .timeline-item-dot{
 	position: absolute;
 	top: 50%;
