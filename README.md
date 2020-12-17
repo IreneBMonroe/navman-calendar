@@ -68,3 +68,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## To run mock API endpoint
+Open terminal under project directory and the following command
+`cd mock-api`
+`npm install`
+`npm install -g json-server`
+`json-server src/index.js`
+This should generate mock up api todos data.

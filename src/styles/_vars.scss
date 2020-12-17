@@ -1,0 +1,72 @@
+// bootstrap vars
+// colour
+$green: rgb(52,181,150);
+$red: rgb(230,87,73);
+$yellow: rgb(229,172,40);
+$blue: rgb(8,150,254);
+$grey: rgb(143,142,147);
+$dark-grey: rgb(143,146,149);
+$white: rgb(255, 255, 255);
+
+// Background colour
+$bg-white: rgb(255, 255, 255);
+$bg-light-grey: rgb(249, 249, 249);
+$blue-gradient: linear-gradient(-180deg, rgb(86,78,178) 100% rgb(66,101,182) 0%);
+$bg-image-overlay: linear-gradient(-180deg, #A1C446 0%, #0C9CBE 100%);
+
+$theme-colors: (
+        "primary": $blue,
+        "danger": $red,
+        "success": $green,
+        "warning": $yellow,
+        "dark": $dark-grey
+);
+// Spacing
+$spacer: 1rem;
+$spacers: (
+        0: 0,
+        1: ($spacer * .25),
+        2: ($spacer * .5),
+        3: $spacer,
+        4: ($spacer * 1.5),
+);
+
+// Paragraph spacing
+$spacing-xxs: 4px;
+$spacing-xs: 8px;
+$spacing-s: 16px;
+$spacing-g: 20px;
+$spacing-m: 24px;
+$spacing-l: 48px;
+$spacing-xl: 96px;
+$spacing-base: 12px;
+
+// Letter spacing
+$letter-spacing-base: 0px;
+$letter-spacing-xs: -0.91px;
+$letter-spacing-s: 0.13px;
+$letter-spacing-m: 2.18px;
+
+// Grid breakpoints
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 1024px,
+        xl: 1200px
+);
+
+// $container-narrow-width: 860px;
+$container-narrow-width: 780px;
+$container-narrower-width: 550px;
+
+// Custom
+
+$site-header-height: 80px;
+$site-header-height-mobile: 80px;
+
+@import '../styles/mixins';
+@import '../../node_modules/bootstrap/scss/functions';
+@import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/mixins';
