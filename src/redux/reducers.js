@@ -1,7 +1,7 @@
 import {ADD_TODO, UPDATE_TODO, DELETE_TODO, SET_FILTER, SELECT_DATE, FETCH_TODOS_REQUEST} from './actions';
-import {initialState} from './states';
+import {state} from './states';
 
-const reducers = (state= initialState, action) => {
+const reducers = (state= state, action) => {
     switch (action.type) {
         case ADD_TODO:
             return {

@@ -35,20 +35,22 @@ const WeatherReport = () => {
 				if (response.current && response.current.weather.length > 0) {
 					setTemp(`${Math.floor(response.current.temp / 10)}°C`);
 					setCondition(response.current.weather[0].main);
-					switch (response.current.weather[0].main) {
-						case 'Clear':
+					
+					switch (response.current.weather[0].main.toLowerCase()) {
+						case 'clear':
 						case 'clear sky':
 							setIcon(faSun);
 							break;
-						case 'Rain':
-						case 'Shower rain':
+						case 'rain':
+						case 'shower rain':
 						case 'light rain':
 							setIcon(faCloudRain);
 							break;
-						case 'Windy':
+						case 'windy':
 							setIcon(faWind);
 							break;
-						case 'Cloudy':
+						case 'cloudy':
+						case 'clouds':
 						case 'broken clouds':
 							setIcon(faCloud);
 							break;

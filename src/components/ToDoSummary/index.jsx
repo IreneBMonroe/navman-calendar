@@ -2,6 +2,19 @@ import React, {useState} from 'react';
 import {Row, Col} from 'reactstrap';
 import ToDoAdd from '../ToDoAdd';
 import './styles.scss';
+import { useSelector } from 'react-redux';
+import { createSelector } from 'reselect';
+
+const selectNumOfStatusType = createSelector(
+    state => state.todos,
+    (_, status) => status,
+    (todos, status) => todos.filter(todo => (todo.status === status)).length
+);
+
+export const StatusTypeTodosCounter = () => {
+    const NumOfTodosByType = useSelector(selectNumOfStatusType)
+    return <>{NumOfTodosByType}</>
+}
 
 const ToDoSummary = (props) => {
     const [isOpen, setIsOpen] = useState(false);

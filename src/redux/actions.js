@@ -8,6 +8,9 @@ export const SELECT_DATE = "SELECT_DATA";
 export const FETCH_TODOS_REQUEST = "FETCH_TODOS_REQUEST";
 export const FETCH_TODOS_SUCCESS = "FETCH_TODOS_SUCCESS";
 export const FETCH_TODOS_FAILURE = "FETCH_TODOS_FAILURE";
+export const FETCH_USERS_REQUEST = "FETCH_USERS_REQUEST";
+export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
+export const FETCH_USERS_FAILURE = "FETCH_USERS_FAILURE";
 const _URL = "http://localhost:9000/";
 
 export const addTodo = (todo) =>{
@@ -70,33 +73,33 @@ export const fetchTodosFailure = error => {
 export const fetchToDos = date => async (dispatch, getState) => {
     dispatch(fetchTodosRequest);
     try {
-        const response = await Request(`${_URL}todos?_order=asc&dueDate_eq=${date}`).then(response => response.json());
+        const response = await Request(`${_URL}todos?_order=asc&dueDate=2020-12-22`).then(response => response.json());
         dispatch(fetchTodosSuccess(response));
     } catch (e){
         dispatch(fetchTodosFailure);
     }
     dispatch({
-        type: "Todos.LOAD_TODOS_FAILURE"
+        type: "FETCH_TODOS_FAILURE"
     });
 };
 export const getUsers = id => async (dispatch, getState) => {
     dispatch({
-        type: "Users.LOAD_USERS_REQUEST"
+        type: "FETCH_USERS_REQUEST"
     });
     try {
         const response = await Request(`${_URL}users/${id}`).then(response => response.json());
         dispatch({
-            type: "Users.LOAD_USERS_SUCCESS",
+            type: "FETCH_USERS_SUCCESS",
             payload: {
                 response
             }
         });
     } catch (e){
 	    dispatch({
-		    type: "Users.LOAD_USERS_FAILURE"
+		    type: "FETCH_USERS_FAILURE"
 	    });
     }
     dispatch({
-        type: "Users.LOAD_USERS_FAILURE"
+        type: "FETCH_USERS_FAILURE"
     });
 };
