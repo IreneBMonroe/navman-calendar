@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Row, Col, Button} from 'reactstrap';
+import {Row, Col} from 'reactstrap';
 import ToDoAdd from '../ToDoAdd';
 import './styles.scss';
 

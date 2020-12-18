@@ -6,11 +6,10 @@ import {useDispatch} from 'react-redux';
 import {selectDate} from "../../redux/actions";
 
 
-function Calender(props) {
+function Calender() {
     const [value, setValue] = useState(new Date());
     let dispatch = useDispatch();
     const handleChange = (date) =>{
-        console.log('show me the date :', date);
         setValue(date);
         dispatch(selectDate(date));
     };

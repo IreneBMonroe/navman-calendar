@@ -6,7 +6,7 @@ import {faCloud, faCloudRain, faSun, faWind, faSnowflake} from '@fortawesome/fre
 import buildUrl from 'build-url';
 
 //To REMOVE Security Risk
-const OPEN_APP_ID = '6261bc3c85b1ce89cb63ebdf1f3a4493';
+const OPEN_APP_ID = process.env.REACT_APP_OPEN_KEY;
 
 const WeatherReport = () => {
 	let {coordinate} = useCoordinate();
