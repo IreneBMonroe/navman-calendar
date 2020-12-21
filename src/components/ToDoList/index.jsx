@@ -5,12 +5,12 @@ import {useSelector} from "react-redux";
 import moment from 'moment';
 
 const TodoList = () => {
-	let todos = useSelector(state => state.todos);
+	let currentToDos = useSelector(state => state.currentToDos);
 	let currentDate = useSelector(state => state.currentDate);
 	let day = moment(currentDate).format('dddd');
 	let monthDate = moment(currentDate).format('D MMMM');
 	
-	if (!todos || todos.length === 0) {
+	if (!currentToDos || currentToDos.length === 0) {
 		return <p> No Todos</p>
 	}
 	
@@ -32,7 +32,7 @@ const TodoList = () => {
 					</Row>
 				</div>
 				{
-					todos && todos.map((todo, i) => {
+					currentToDos && currentToDos.map((todo, i) => {
 							return <ToDoItem key={todo.id} item={todo} index={i}/>
 						}
 					)

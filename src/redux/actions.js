@@ -1,18 +1,19 @@
 import Request from '../request';
+import moment from 'moment';
 export const ADD_TODO = "ADD_TODO";
 export const UPDATE_TODO = "UPDATE_TODO";
 export const SET_FILTER = "SET_FILTER";
 export const DELETE_TODO = "DELETE_TODO";
 export const CURRENT_DATE = "CURRENT_DATE";
 export const SELECT_DATE = "SELECT_DATA";
-export const FETCH_TODOS_REQUEST = "FETCH_TODOS_REQUEST";
+export const FETCH_TODOS_LOADING = "FETCH_TODOS_LOADING";
 export const FETCH_TODOS_SUCCESS = "FETCH_TODOS_SUCCESS";
 export const FETCH_TODOS_FAILURE = "FETCH_TODOS_FAILURE";
-export const FETCH_USERS_REQUEST = "FETCH_USERS_REQUEST";
-export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
-export const FETCH_USERS_FAILURE = "FETCH_USERS_FAILURE";
-const _URL = "http://localhost:9000/";
+export const FETCH_TODOS_BY_DATE_SUCCESS = "FETCH_TODOS_BY_DATE_SUCCESS";
+export const FETCH_TODOS_BY_DATE_FAILURE = "FETCH_TODOS_BY_DATE_FAILURE";
+export const FETCH_TODOS_BY_DATE_LOADING = "FETCH_TODOS_BY_DATE_LOADING";
 
+const _URL = "http://localhost:9000/";
 export const addTodo = (todo) =>{
     return {
         type: ADD_TODO,
@@ -53,9 +54,9 @@ export const selectDate = (date) => {
     }
 }
 
-export const fetchTodosRequest = () => {
+export const fetchTodosLoading = () => {
     return {
-        type: FETCH_TODOS_REQUEST
+        type: FETCH_TODOS_LOADING
     }
 }
 export const fetchTodosSuccess = (todos) => {
@@ -67,39 +68,51 @@ export const fetchTodosSuccess = (todos) => {
 export const fetchTodosFailure = error => {
     return {
         type: FETCH_TODOS_FAILURE,
+        payload: {error}
+    }
+}
+
+export const fetchTodosByDateSuccess = (todos) => {
+    return {
+        type: FETCH_TODOS_BY_DATE_SUCCESS,
+        payload: todos
+    }
+}
+export const fetchTodosByDateLoading = () => {
+    return {
+        type: FETCH_TODOS_BY_DATE_LOADING
+    }
+}
+export const fetchTodosByDateFailure = (error) => {
+    return {
+        type: FETCH_TODOS_BY_DATE_FAILURE,
         payload: error
     }
 }
-export const fetchToDos = date => async (dispatch, getState) => {
-    dispatch(fetchTodosRequest);
-    try {
-        const response = await Request(`${_URL}todos?_order=asc&dueDate=2020-12-22`).then(response => response.json());
+export const fetchToDos = (dispatch, getState) => {
+    dispatch(fetchTodosLoading());
+    Request(`${_URL}todos`).then(response => {
         dispatch(fetchTodosSuccess(response));
+    }).catch(e => dispatch(fetchTodosFailure(e)));
+    /*try {
+        const response = await Request(_URL,`todos`, );
+        console.log('response >> ', response);
+        dispatch(fetchTodosSuccess(response));
+        return response;
     } catch (e){
-        dispatch(fetchTodosFailure);
-    }
-    dispatch({
-        type: "FETCH_TODOS_FAILURE"
-    });
+        dispatch(fetchTodosFailure(e));
+    }*/
 };
-export const getUsers = id => async (dispatch, getState) => {
-    dispatch({
-        type: "FETCH_USERS_REQUEST"
-    });
+
+export const fetchTodosByDate = date => async (dispatch, getState) => {
+    dispatch(fetchTodosByDateLoading());
+    
+    let now = moment(new Date(date)).format('YYYY-MM-DD');
     try {
-        const response = await Request(`${_URL}users/${id}`).then(response => response.json());
-        dispatch({
-            type: "FETCH_USERS_SUCCESS",
-            payload: {
-                response
-            }
-        });
+        const response = await Request(`${_URL}todos?_order=asc&dueDate=${now}`, `GET`);
+        dispatch(fetchTodosByDateSuccess(response));
     } catch (e){
-	    dispatch({
-		    type: "FETCH_USERS_FAILURE"
-	    });
+        dispatch(fetchTodosByDateFailure(e));
     }
-    dispatch({
-        type: "FETCH_USERS_FAILURE"
-    });
 };
+

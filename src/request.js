@@ -1,10 +1,11 @@
 const Request = async (reqUrl, method, body) => {
 	const init = {
 		method: method ? method : 'GET',
-		mode: 'cors', // no-cors, *cors, same-origin
+		mode:'cors', // no-cors, *cors, same-origin
 		headers: {
 			Accept: 'application/json',
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*'
 		}
 	};
 	

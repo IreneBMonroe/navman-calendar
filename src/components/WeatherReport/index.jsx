@@ -7,6 +7,10 @@ import buildUrl from 'build-url';
 
 //To REMOVE Security Risk
 const OPEN_APP_ID = process.env.REACT_APP_OPEN_KEY;
+const defaultLocation = {
+	latitude: -36.8506,
+	longitude: 174.7679,
+};
 
 const WeatherReport = () => {
 	let {coordinate} = useCoordinate();
@@ -19,8 +23,8 @@ const WeatherReport = () => {
 		queryParams: {
 			exclude: 'minutely',
 			appid: OPEN_APP_ID,
-			lat: coordinate.latitude,
-			lon: coordinate.longitude,
+			lat: coordinate.latitude || defaultLocation.latitude,
+			lon: coordinate.longitude || defaultLocation.longitude,
 			unit: 'metric'
 		}
 	});
@@ -31,7 +35,7 @@ const WeatherReport = () => {
 	const fetchDailyWeather = async () => {
 		if (!coordinate) return;
 		try {
-			Request(WEATHER_URL).then(response => {
+			await Request(WEATHER_URL).then(response => {
 				if (response.current && response.current.weather.length > 0) {
 					setTemp(`${Math.floor(response.current.temp / 10)}°C`);
 					setCondition(response.current.weather[0].main);

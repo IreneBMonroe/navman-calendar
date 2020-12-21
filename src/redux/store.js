@@ -1,10 +1,16 @@
-import { createStore, applyMiddleware  } from 'redux';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from "redux-thunk";
 import reducers from './reducers';
-import {state} from './states';
+import {states} from './states';
+import {fetchToDos, fetchTodosByDate} from './actions';
+import {createLogger} from 'redux-logger';
 
-const middlewares = [thunk];
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducers, state, applyMiddleware(...middlewares));
+const logger = createLogger();
+const store = createStore(reducers, states, composeEnhancers(applyMiddleware(thunk, logger)));
+
+//store.dispatch(fetchToDos());
+store.dispatch(fetchTodosByDate(new Date()));
+
 export default store;
-/*store.subscribe(()=> console.log(store.getState()));*/

@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {connect} from "react-redux";
 import {Row, Col} from 'reactstrap';
 import ToDoAdd from '../ToDoAdd';
 import './styles.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { createSelector } from 'reselect';
+import {fetchToDos, fetchTodosFailure, fetchTodosLoading, fetchTodosSuccess} from "../../redux/actions";
+import { bindActionCreators } from 'redux';
+
 
 const selectNumOfStatusType = createSelector(
     state => state.todos,
@@ -18,9 +22,16 @@ export const StatusTypeTodosCounter = () => {
 
 const ToDoSummary = (props) => {
     const [isOpen, setIsOpen] = useState(false);
+    const todos = useSelector(state => state.todos)
+    const dispatch = useDispatch();
     const openModal = () => {
         setIsOpen(!isOpen);
     };
+    console.log(todos);
+   /*
+    useEffect(() => {
+        fetchToDos()
+    },[todos])*/
 
     return (
         <div className={`summary`}>
@@ -49,5 +60,21 @@ const ToDoSummary = (props) => {
         </div>
     );
 }
+const mapStateToProps = (state) => ({
+  /*  error: fetchTodosFailure(state),
+    todos: fetchTodosSuccess(state),
+    loading: fetchTodosLoading(state)*/
+    error: state.todos.error,
+    todos: state.todos.items,
+    loading: state.todos.loading
+});
 
-export default ToDoSummary;
+/*const mapDispatchToProps = dispatch => bindActionCreators({
+    fetchToDos: () => {dispatch(fetchToDos)}
+}, dispatch)*/
+
+const mapDispatchToProps = dispatch => {
+    return { fetchTodos: () => dispatch(fetchToDos()) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToDoSummary);

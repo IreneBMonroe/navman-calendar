@@ -11,10 +11,11 @@ const useCoordinate = () => {
 	}, [isFetch]);
 	
 	const getCoordinatesByIP = async () =>{
-		const URL = 'https://ipapi.co/json/';
+		const URL = `https://ipapi.co/`;
 		
 		try {
-			Request(URL).then(response => {
+			Request( `${URL}json/`, 'GET').then(response => {
+				console.log(response)
 				setCoordinate(response);
 				setIsFetch(true);
 			});

@@ -1,7 +1,7 @@
-import {ADD_TODO, UPDATE_TODO, DELETE_TODO, SET_FILTER, SELECT_DATE, FETCH_TODOS_REQUEST} from './actions';
-import {state} from './states';
+import {ADD_TODO, UPDATE_TODO, DELETE_TODO, SET_FILTER, SELECT_DATE, FETCH_TODOS_SUCCESS, FETCH_TODOS_BY_DATE_SUCCESS, FETCH_TODOS_LOADING, FETCH_TODOS_FAILURE, FETCH_TODOS_BY_DATE_FAILURE, FETCH_TODOS_BY_DATE_LOADING} from './actions';
+import {states} from './states';
 
-const reducers = (state= state, action) => {
+const reducers = (state= states, action) => {
     switch (action.type) {
         case ADD_TODO:
             return {
@@ -29,15 +29,51 @@ const reducers = (state= state, action) => {
                 currentDate: action.payload,
             };
             break;
-        case FETCH_TODOS_REQUEST:
+        case FETCH_TODOS_LOADING:
             return {
                 ...state,
-                todos: [...state.todos, action.payload],
+                loading: true,
+                error: null
+            };
+            break;
+        case FETCH_TODOS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                items: action.payload,
+            };
+            break;
+        case FETCH_TODOS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            };
+            break;
+        case FETCH_TODOS_BY_DATE_LOADING:
+            return {
+                ...state,
+                loading: true
+            };
+            break;
+        case FETCH_TODOS_BY_DATE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                currentToDos: action.payload,
+            };
+            break;
+        case FETCH_TODOS_BY_DATE_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
             };
             break;
         default:
             return state;
     }
 }
+
 
 export default reducers;
